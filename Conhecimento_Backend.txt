@@ -1,0 +1,43 @@
+cria o packjson básico:
+npm init -y
+
+Dependencias para iniciar o backend:
+1- Instala o express(Framework para WebServices) -s para salvar
+npm i -s express 
+
+2- Instalar o body-parser que tem a função de interpretar o corpo de uma requisão
+npm i -s body-parser
+
+3- Instalar o CORS Cross orign request, tem a função de deixar a API 
+disponivel de outras origens.
+
+npm i -s cors
+
+4-Instalar o consign essa biblioteca tem a função de viabilizar a comunicação entres
+os modulos do backend, feitos em java script
+
+npm i -s consign
+
+5-Responsável pela criptografia na API
+npm i -s bcrypt-nodejs 
+
+6- Gerador de token java web token
+npm i -s jwt-simple
+
+7- O Passaporte é um framework para autenticação na API, como ele nos podemos usar 
+várias estratégias de autenticação como Facebook, gmail e passport-jwt.
+npm i -s passport passport-jwt
+
+8- knex é responsável por instalar os drives de conexão com o banco de dados, onde 'pg' é o postgree ou npm install mysql
+npm i -s knex pg
+
+9- moment biblioteca responsável por controlar gerênciar data e hora
+npm i -s moment
+
+10- Instalar o launcher, cuja a função é gerenciar a aplicação, reset, star e stop (pm2 launcher profissional)
+
+Observações:Dentro do packge.json Trocar o a chave "scripts" : {"start":"nodemon"} aponta para o launcher
+responsável por gerenciar a aplicação.
+Quando chamar npm start ele vai chamar o nodemon que vai ler o arquivo index.js
+
+npm i --save-dev nodemon
