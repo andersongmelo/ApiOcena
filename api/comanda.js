@@ -5,10 +5,29 @@ module.exports = app => {
         const date = req.query.date ? req.query.date
             : moment().endOf('day').toDate()
 
-        app.db('comanda')
-            .where( { userId: req.user.id })
-            .where('data', '<=', date)
-            .orderBy('data')
+            
+
+        app.db('delivery_carrinho')
+        .select(
+
+            'delivery_pedido.ID_PEDIDO'
+            ,'delivery_pedido.ID_CLIENTE'
+            ,'cliente.NOME'
+            ,'delivery_pedido.DATA_CONCLUIDO'
+            ,'delivery_pedido.VALOR_PEDIDO'
+            ,'delivery_carrinho.ID_PRODUTO'
+            ,'produto.DESCRICAO'
+            ,'delivery_carrinho.QUANTIDADE'
+            ,'delivery_carrinho.QUANTIDADE_CONFIRMADA'
+            ,'delivery_carrinho.VALOR_PARCIAL'
+          )
+          .join('delivery_pedido', 'delivery_pedido.id_pedido', '=', 'delivery_carrinho.id_pedido')
+          .join('cliente', 'cliente.ID_CLIENTE', '=', 'delivery_pedido.ID_CLIENTE')
+          .join('produto', 'produto.ID_PRODUTO', '=', 'delivery_carrinho.ID_PRODUTO')
+
+            //.where( { userId: req.user.id })
+            .where('delivery_pedido.DATA_CONCLUIDO', '<=', date)
+            .orderBy('delivery_pedido.DATA_CONCLUIDO')
             .then(comanda => res.json(comanda))
             .catch(err => res.status(400).json(err))
     }

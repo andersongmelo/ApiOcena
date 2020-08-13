@@ -1,0 +1,5 @@
+connection: {
+    database: 'personal',
+    user:     'root',
+    password: 'password',
+    host : 'localhost'
